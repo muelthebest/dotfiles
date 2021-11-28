@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# Simple moonphase and
+# horoscope script that
+# uses Horoscope-api
+
+# Dependencies: perl-libwww
+
+# Variables
+sign="Pisces"
+day="today"
+
+# Files
+moonfile="${XDG_DATA_HOME:-$HOME/.local/share}/moonphase"
+scopefile="${XDG_DATA_HOME:-$HOME/.local/share}/scopefile"
+
+# Get new info everyday
+[ "$(stat -c %y "$moonfile" 2>/dev/null | cut -d' ' -f1)" = "$(date '+%Y-%m-%d')" ] ||
+	{ curl -sf "wttr.in/?format=%m" > "$moonfile" || exit 1 ;}
+[ "$(stat -c %y "$scopefile" 2>/dev/null | cut -d' ' -f1)" = "$(date '+%Y-%m-%d')" ] ||
+	{ GET "http://horoscope-api.herokuapp.com/horoscope/$day/$sign" | sed '1,2d;4,5d;s/\"//g;s/\",//g;s/\.,/\./g' | cut -d: -f 2 > "$scopefile" || exit 1 ;}
+
+# Horoscope stuff
+case "$sign" in
+	[Aa][Rr][Ii][Ee][Ss]) sign="♈" ;;
+	[Cc][Aa][Nn][Cc][Ee][Rr]) sign="♋" ;;
+	[Tt][Aa][Uu][Rr][Uu][Ss]) sign="♉" ;;
+	[Ll][Ee][Oo]) sign="♌" ;;
+	[Gg][Ee][Mm][Ii][Nn][Ii]) sign="♊" ;;
+	[Vv][Ii][Rr][Gg][Oo]) sign="♍" ;;
+	[Ll][Ii][Bb][Rr][Aa]) sign="♎" ;;
+	[Cc][Aa][Pp][Rr][Ii][Cc][Oo][Rr][Nn]) sign="♑" ;;
+	[Ss][Cc][Oo][Rr][Pp][Ii][Oo]) sign="♏" ;;
+	[Aa][Qq][Uu][Aa][Rr][Ii][Uu][Ss]) sign="♒" ;;
+	[Ss][Aa][Gg][Ii][Tt][Tt][Aa][Rr][Ii][Uu][Ss]) sign="♐" ;;
+	[Pp][Ii][Ss][Cc][Ee][Ss]) sign="♓" ;;
+esac
+
+# Clickable bar stuff
+case $BLOCK_BUTTON in
+	1) notify-send "🌜 Moon phass:
+- 🌑: New
+- 🌒: Waxing Crescent
+- 🌓: First Quarter
+- 🌔: Waxing Gibbous
+- 🌕: Full
+- 🌖: Waning Gibbous
+- 🌗: Last Quarter
+- 🌘: Waning Crescent" ;;
+	2) notify-send "Moon phase and horoscope" "\- Shows moon phase
+- Right Click shows different moon phases
+- Left Click shows Horoscope
+- Ctrl+Left click refreshes moonshpase and horoscope." ;;
+	3) notify-send -t 0 "$(sed "s/ /$sign:/" .local/share/scopefile)" ;;
+	8) rm $scopefile $moonfile && kill -$((34+18)) $(pidof gocaudices) && exit ;;
+	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+# Moonphase stuff
+moon="$(cat "$moonfile")"
+printf ${moon:-❓}

@@ -1,3 +1,5 @@
+execute 'source' fnamemodify(expand('<sfile>'), ':h').'/main.vim'
+
 let mapleader =","
 
 if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
@@ -8,15 +10,6 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 endif
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-Plug 'tpope/vim-surround'
-Plug 'preservim/nerdtree'
-Plug 'junegunn/goyo.vim'
-Plug 'jreybert/vimagit'
-Plug 'lukesmithxyz/vimling'
-Plug 'vimwiki/vimwiki'
-Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-commentary'
-Plug 'ap/vim-css-color'
 call plug#end()
 
 set title

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# test
+
+cd ~/Documents/automation/duties-script; mvn exec:java -Dexec.mainClass=test; exit

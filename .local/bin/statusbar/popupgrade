@@ -1,0 +1,9 @@
+#!/bin/sh
+
+printf "Beginning upgrade.\\n"
+
+yay -Syu
+kill -$((34+8)) $(pidof gocaudices)
+
+printf "\\nUpgrade complete.\\nPress <Enter> to exit window.\\n\\n"
+read -r
