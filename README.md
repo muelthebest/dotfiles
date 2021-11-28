@@ -1,7 +1,4 @@
-# The Voidrice (Luke Smith <https://lukesmith.xyz>'s dotfiles)
-
-These are the dotfiles deployed by [LARBS](https://larbs.xyz) and as seen on
-[my YouTube channel](https://youtube.com/c/lukesmithxyz).
+# Based on Lukesmith's build and implemented configs to ubuntu !!
 
 - Very useful scripts are in `~/.local/bin/`
 - Settings for:
@@ -23,27 +20,19 @@ These are the dotfiles deployed by [LARBS](https://larbs.xyz) and as seen on
 
 These dotfiles are intended to go with numerous suckless programs I use:
 
-- [dwm](https://github.com/lukesmithxyz/dwm) (window manager)
-- [dwmblocks](https://github.com/lukesmithxyz/dwmblocks) (statusbar)
-- [st](https://github.com/lukesmithxyz/st) (terminal emulator)
+- [dwm](https://github.com/muelthebest/dwm) (window manager)
+- [dwmblocks](https://github.com/muelthebest/dwmblocks) (statusbar)
+- [st](https://github.com/muelthebest/st) (terminal emulator)
 
-I also recommend trying out
-[mutt-wizard](https://github.com/lukesmithxyz/mutt-wizard), which additionally
-works with this setup. It gives you an easy-to-install terminal-based email
-client regardless of your email provider. It is integrated into these dotfiles
-as well.
 
-## Install these dotfiles and all dependencies
+## Install all dependencies on ubuntu
 
-Use [LARBS](https://larbs.xyz) to autoinstall everything:
-
-```
-curl -LO larbs.xyz/larbs.sh
-```
-
-or clone the repo files directly to your home directory and install the
 [dependencies](https://github.com/LukeSmithxyz/LARBS/blob/master/progs.csv).
 
-## Default Desktop Artwork
+## Implementing config's build to ubuntu 
 
-Thomas Thiemeyer's *The Road to Samarkand* ([fb](https://www.facebook.com/t.thiemeyer/), [insta](https://www.instagram.com/tthiemeyer/), [shop](https://www.redbubble.com/de/people/TThiemeyer/shop))
+1. Install and implemented all archives on dotfiles ("Set exactly equal to repository")
+2. Verify if you have xorg system implemented (default on ubuntu)
+3. Make all suckless (Dwm, Dwmblocks, Dmenu, St)
+4. Remove your display manager running on ubuntu is: ( sudo apt remove --purge gdm ) -- to install is - ( sudo apt install gdm ) 
+5. Verify if xorg was been setup and reinstall system. 
