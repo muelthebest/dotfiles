@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Arch aliases
+alias p="sudo pacman"
+
+# Void aliases
+alias xi="sudo xbps-install"
+alias xr="sudo xbps-remove"
+alias xq="sudo xbps-query"
+
+# Global workflow aliases
+alias vi="nvim"
+alias svi="sudo nvim"
+alias slf="sudo lf"
+
+# Script aliases
+alias scd=". scd"
